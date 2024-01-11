@@ -25,8 +25,6 @@ def do_pack():
     results = local(f"tar -cvzf {archivepath} web_static")
     # check if successful and return the path of the archive
     if results.succeeded:
-        print(f"Archive created: {archivepath}")
         return archivepath
     else:
-        print("Failed to create the archive.")
         return None
