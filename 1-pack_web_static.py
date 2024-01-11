@@ -3,11 +3,10 @@
 A fabric script that generates a .tgz archive fromm contents
 of the web static
 """
-from fabric.api import local, task
+from fabric.api import local
 from datetime import datetime
 from pathlib import Path
 
-@task
 def do_pack():
     """
     fabric function to generate the .tgz
