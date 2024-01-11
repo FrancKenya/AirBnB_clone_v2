@@ -7,6 +7,7 @@ from fabric.api import local
 from datetime import datetime
 from pathlib import Path
 
+
 def do_pack():
     """
     fabric function to generate the .tgz
@@ -23,7 +24,4 @@ def do_pack():
     # compress web static folder
     results = local(f"tar -cvzf {archivepath} web_static")
     # check if successful and return the path of the archive
-    if results.succeeded:
-        return archivepath
-    else:
-        return None
+    return archivepath
