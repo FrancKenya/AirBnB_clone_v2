@@ -24,7 +24,7 @@ def do_pack():
     # compress web static folder
     results = local(f"tar -cvzf {archivepath} web_static")
     # check if successful and return the path of the archive
-    if output.succeeded:
+    if results.succeeded:
         print(f"Archive created: {archivepath}")
         return archivepath
     else:
