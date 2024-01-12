@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 """ A fabric script that distributes an archive to web servers """
 
-from fabric.api import sudo, put
+from fabric.api import sudo, put, env
 from pathlib import Path
 env.hosts = ['18.207.3.97', '100.26.212.29']
 
