@@ -1,11 +1,13 @@
 #!/usr/bin/python3
-""" A fabric script that distributes an archive to web servers """
+""" This fabric script distributes an archive to two web servers """
 
-from fabric.api import sudo, put, env
+from fabric.api import *
 from pathlib import Path
-env.hosts = ['18.207.3.97', '100.26.212.29']
+
+env.hosts = ['54.237.97.75', '100.25.144.98']
 
 
+@task
 def do_deploy(archive_path):
     """
     Deploys to server locations
