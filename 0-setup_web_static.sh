@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
-# Sets up the deployment of web static on web servers
+# This script sets up the deployment of web static on two web servers
 
-# check if nginx is installed and if not installs it
+# checks if nginx is installed and if not installs it
 if ! nginx -v &> /dev/null
 then
 	sudo apt update -y
