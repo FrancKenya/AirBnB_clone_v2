@@ -34,4 +34,8 @@ def do_deploy(archive_path):
     exec_6 = run(f"rm -rf /data/web_static/current")
     exec_7 = run(f"ln -s {destDir} /data/web_static/current")
     exec_list = [exec_1, exec_2, exec_3, exec_4, exec_5, exec_6, exec_7]
-    return True if all([obj.succeeded for obj in exec_list]) else False
+    if all([obj.succeeded for obj in exec_list]):
+        print("New version deployed!")
+        return True
+    else:
+        return False
