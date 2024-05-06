@@ -1,16 +1,17 @@
 #!/usr/bin/python3
 """
-A fabric script that generates a .tgz archive fromm contents
+This is a fabric script that generates a .tgz archive fromm contents
 of the web static
 """
-from fabric.api import local
+
 from datetime import datetime
+from fabric.api import *
 from pathlib import Path
 
-
+@task
 def do_pack():
     """
-    fabric function to generate the .tgz
+    A function generating the .tgz
     Returns:
         Archive path if successful
     """
