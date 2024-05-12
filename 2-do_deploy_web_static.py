@@ -8,7 +8,6 @@ import os
 env.hosts = ['54.237.97.75', '100.25.144.98']
 
 
-@task
 def do_deploy(archive_path):
     """
     Deploys to server locations
