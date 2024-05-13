@@ -18,7 +18,7 @@ def do_deploy(archive_path):
         True if successful, false if otherwise
     """
     path_obj = Path(archive_path)
-    if not path_obj.exists:
+    if not path_obj.exists():
         return False
 
     tmpDest = f"/tmp/{path_obj.name}"
@@ -35,7 +35,4 @@ def do_deploy(archive_path):
     exec_6 = sudo(f"rm -rf /data/web_static/current")
     exec_7 = sudo(f"ln -s {destDir} /data/web_static/current")
     exec_list = [exec_1, exec_2, exec_3, exec_4, exec_5, exec_6, exec_7]
-    if all([obj.succeeded for obj in exec_list]):
-        return True
-    else:
-        return False
+    return True if all([obj.succeeded for obj in exec_list]) else False
