@@ -1,9 +1,9 @@
 #!/usr/bin/python3
 """ This fabric script distributes an archive to two web servers """
 
+import os
 from fabric.api import *
 from pathlib import Path
-import os
 
 env.hosts = ['54.237.97.75', '100.25.144.98']
 
