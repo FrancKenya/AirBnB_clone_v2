@@ -11,8 +11,8 @@ html_file = "<html>
 package { 'nginx':
   ensure => installed,
 }
-exec {"cnfigure nginx":
-    command => 'sudo mkdir -p /data/web_static/releases/test/ &&sudo mkdir -p /data/web_static/shared/ &&
+exec {'configure nginx':
+    command  => 'sudo mkdir -p /data/web_static/releases/test/ &&sudo mkdir -p /data/web_static/shared/ &&
                 sudo echo $html_file > /data/web_static/releases/test/index.html &&
                 sudo ln -sf /data/web_static/releases/test/ /data/web_static/current &&
                 sudo chown -R ubuntu:ubuntu /data/ &&
