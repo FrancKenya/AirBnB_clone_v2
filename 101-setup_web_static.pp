@@ -11,13 +11,44 @@ html_file = "<html>
 package { 'nginx':
   ensure => installed,
 }
-exec {'configure nginx':
-    command  => 'sudo mkdir -p /data/web_static/releases/test/ &&sudo mkdir -p /data/web_static/shared/ &&
-                sudo echo $html_file > /data/web_static/releases/test/index.html &&
-                sudo ln -sf /data/web_static/releases/test/ /data/web_static/current &&
-                sudo chown -R ubuntu:ubuntu /data/ &&
-                new_update="\\\n\tlocation /hbnb_static {\n\talias /data/web_static/current/;\n\t}" &&
-                sudo sed -i "55i $new_update" /etc/nginx/sites-available/default &&
-                sudo service nginx restart',
-    provider => 'shell',
+
+file { '/data/web_static/releases/test':
+  ensure => directory,
+  before => File['/data/web_static/shared', '/data/web_static/releases/test/index.html'],
+}
+
+file { '/data/web_static/shared':
+  ensure => directory,
+}
+
+file { '/data/web_static/releases/test/index.html':
+  ensure  => file,
+  content => $html_content,
+  require => File['/data/web_static/releases/test'],
+}
+
+file { '/data/web_static/current':
+  ensure => link,
+  target => '/data/web_static/releases/test',
+}
+
+file { '/data':
+  ensure  => directory,
+  owner   => 'ubuntu',
+  group   => 'ubuntu',
+  recurse => true,
+}
+
+file_line { 'nginx_hbnb_static_config':
+  ensure => present,
+  path   => '/etc/nginx/sites-available/default',
+  line   => '        location /hbnb_static {',
+  after  => '    server_name _;',
+}
+
+exec { 'nginx_restart':
+  command     => 'service nginx restart',
+  path        => '/usr/bin:/usr/sbin:/bin',
+  refreshonly => true,
+  subscribe   => File_line['nginx_hbnb_static_config'],
 }
