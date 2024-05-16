@@ -26,6 +26,7 @@ def do_clean(number=0):
     path = Path("versions")
     files = sorted(path.glob("web_static_*.tgz"), key=os.path.getmtime)
 
+    number = int(number)
     if number == 0 or number == 1:
         kept_archives = files[-1:]
     else:
@@ -33,7 +34,7 @@ def do_clean(number=0):
 
     with cd("versions"):
         for i in files:
-            if str(i) not in kept_archives:
+            if i not in kept_archives:
                 local(f"rm -r {i}")
 
     env_paths = Path("/data/web_static/releases")
@@ -41,5 +42,5 @@ def do_clean(number=0):
         filesNames = sorted(
                 env_paths.glob("web_static_*.tgz"), key=os.path.getmtime)
         for i in filesNames:
-            if str(i) not in kept_archives:
+            if i not in kept_archives:
                 run(f"rm -r {i}")
