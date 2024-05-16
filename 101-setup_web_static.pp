@@ -1,6 +1,6 @@
 # Using puppet to configure two web servers
 
-html_file = "<html>
+html_content = "<html>
   <head>
   </head>
   <body>
