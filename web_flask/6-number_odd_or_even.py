@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-""" Starts Flask web application with specific routes """
+""" This module uses Flask to run function mapped with specified routes """
 
 
 from flask import Flask, render_template
@@ -9,13 +9,13 @@ app = Flask(__name__)
 
 @app.route('/', strict_slashes=False)
 def hello_bnb():
-    """ Displays Hello HBNB!"""
+    """ Function matched to the route that displays 'Hello HBNB! """
     return 'Hello HBNB!'
 
 
 @app.route('/hbnb', strict_slashes=False)
 def display_hbnb():
-    """Returns HBNB string"""
+    """ Function matched to route '/hbnb' and displays 'HBNB' """
     return 'HBNB'
 
 
